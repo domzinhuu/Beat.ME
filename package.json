@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "postinstall": "ng build --aot --target=production",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -22,6 +23,7 @@
     "@angular/router": "^5.0.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "express": "^4.16.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "rxjs": "^5.5.2",
@@ -47,5 +49,9 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
+  },
+  "engines": {
+    "node": "8.9.2",
+    "npm": "5.6.0"
   }
 }
