@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Orbitron:400,700,900');
+body{
+    font-family: 'Orbitron', sans-serif;
+    background-image: url('./assets/img/bg.png');
+    
+}
+.mask-bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(240, 223, 216);
+    opacity: .9;
+}
+.normal-font{
+    font-family: sans-serif;
+}
+
+.toolbar{
+    padding: 20px;
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.screen{
+    width: 70%;
+    height: 400px;
+    background-color: lightcyan;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+}
+
+.vs{
+    text-shadow: 1px 1px 2px lightcoral;
+}
+.hud{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.row{
+    padding: 15px;
+}
+
+.controls{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.lifebar{
+    position: relative;
+    width: 40%;
+    height: 30px;
+    background-color: lightcoral;
+    border-radius: 5px;
+}
+
+.p1{
+
+}
+
+.p2{
+    width: 100%;
+    text-align: right;
+}
+
+.count{
+    position: absolute;
+    z-index: 9999;
+}
+.life-p1{
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;;
+    border: 1px solid lightcoral;
+}
+
+.life-p2{
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;;
+    border: 1px solid lightcoral;
+}
+
+.action{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg{
+    opacity: 0;
+    transform: scale(.5);
+    animation: fadeMsg .2s linear 1 forwards;
+}
+
+@keyframes fadeMsg{
+    0%{
+        opacity: 0;
+        transform: scale(.5);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+.popover-p1{
+    position: absolute;
+    opacity: 0;
+}
+.popover-p2{
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    opacity: 0;
+}
+.popover-damage-active{
+    animation: dano 2s linear forwards;
+}
+
+
+
+@keyframes dano{
+    0%{
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+}
+
+.press{
+    font-size: 1.3rem;
+    opacity: 0;
+    animation: pressAnimation .5s ease-in-out infinite;
+}
+
+@keyframes pressAnimation{
+    0%{ opacity: 1; transform: scale(1)}
+    100%{ opacity: 1; transform: scale(1.2)}
+}
+
+.clicked{
+    animation: fastclick .250s linear backwards
+}
+
+@keyframes fastclick{
+    0%{
+        box-shadow: none;
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(2);
+        box-shadow: 2px 2px 5px red;
+    }
+    100%{
+        transform: scale(3);
+        box-shadow: 2px 2px 10px red;
+    }
+}
