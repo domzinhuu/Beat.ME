@@ -36,8 +36,18 @@
         </div>
 
         <div class="start-msg" *ngIf="!running && status != 'gameover'">
-          <h2>
+          <h2 class="text-center">
             <i class="fa fa-bullhorn fa-lg"></i> Beat.ME</h2>
+
+          <div class="howto">
+            <p class="text-center">Como jogar:</p>
+            <ul class="normal-font">
+              <li>Use as teclas 'A' (jogador 1) ou 'L' (jogador 2)</li>
+              <li>Aperte quando a palavra 'FIGHT' aparecer</li>
+              <li>Não aperte antes nem depois se não receberá o dano.</li>
+            </ul>
+          </div>
+
           <p class="text-center press">Aperte start</p>
         </div>
 
