@@ -9,6 +9,7 @@ import { options, getRandonInt, RUNNING, READY, GAMEOVER } from './shared/variab
 export class AppComponent {
   title = 'Beat.ME';
   waitInterval;
+  intervalStartMatch;
   p1Bar = document.getElementsByClassName('life-p1') as HTMLCollectionOf<HTMLElement>;
   p2Bar = document.getElementsByClassName('life-p2') as HTMLCollectionOf<HTMLElement>;
   initialized = false;
@@ -72,10 +73,10 @@ export class AppComponent {
   private startMatch() {
     this.textAction = undefined;
     this.action = 3;
-    const interval = setInterval(() => {
+    this.intervalStartMatch = setInterval(() => {
       this.reseteClickedButton();
       if (this.action === 0) {
-        clearInterval(interval);
+        clearInterval(this.intervalStartMatch);
         this.initialized = true;
         this.run();
       } else {
@@ -173,6 +174,8 @@ export class AppComponent {
     this.running = false;
     this.keyAlreadyPress = false;
     this.status = READY;
+    clearInterval(this.intervalStartMatch);
+    clearInterval(this.waitInterval);
     this.startTheGame();
   }
 
