@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Orbitron:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
 body{
     font-family: 'Orbitron', sans-serif;
     background-image: url('./assets/img/bg.png');
@@ -14,7 +15,7 @@ body{
     opacity: .9;
 }
 .normal-font{
-    font-family: sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .toolbar{
@@ -35,6 +36,14 @@ body{
     background-color: lightcyan;
     border: 1px solid lightblue;
     border-radius: 5px;
+}
+
+.howto{
+    padding: 20px 0px;
+}
+
+.howto ul li{
+    list-style: none;
 }
 
 .vs{
@@ -65,9 +74,14 @@ body{
     border-radius: 5px;
 }
 
+.p1{
+    font-size: 1.8rem;
+}
+
 .p2{
     width: 100%;
     text-align: right;
+    font-size: 1.8rem;
 }
 
 .count{
@@ -247,7 +261,4 @@ body{
         text-align: center;
     }
 
-    .howto ul li{
-        font-size: .9rem;
-    }
 }
