@@ -31,7 +31,7 @@ body{
 }
 
 .screen{
-    width: 70%;
+    width: 80%;
     height: 350px;
     background-color: lightcyan;
     border: 1px solid lightblue;
@@ -68,7 +68,7 @@ body{
 
 .lifebar{
     position: relative;
-    width: 40%;
+    width: 43%;
     height: 30px;
     background-color: lightcoral;
     border-radius: 5px;
@@ -202,7 +202,7 @@ body{
         font-size: 2rem;
     }
     .screen{
-        width: 90%;
+        width: 80%;
         height: 300px;
     }
     
@@ -216,7 +216,7 @@ body{
     }
 
     .lifebar{
-        width: 40%;
+        width: 45%;
         height: 25px;
     }
 
