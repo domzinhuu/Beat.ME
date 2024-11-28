@@ -44,6 +44,7 @@ function startWordCycle() {
 }
 
 function startMatch() {
+  console.log("game started");
   clearIntervals();
   gameState.textAction = undefined;
   gameState.action = 3;
@@ -90,6 +91,7 @@ io.on("connection", (socket) => {
   socket.emit("player-assigned", { playerId: gameState.players.length });
 
   socket.on("start-game", () => {
+    console.log(gameState.players);
     if (gameState.players.length === 2) {
       resetGame();
       gameState.running = true;
