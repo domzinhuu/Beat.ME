@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "start": "node server.js",
+    "start": "ng server --port 4202",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
