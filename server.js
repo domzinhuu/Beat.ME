@@ -82,7 +82,7 @@ function resetGame() {
 }
 
 io.on("connection", (socket) => {
-    console.log('Client conectado...',socket.id);
+  console.log("Client conectado...", socket.id);
   if (gameState.players.length >= 2) {
     socket.emit("connection-rejected");
     return;
@@ -106,9 +106,9 @@ io.on("connection", (socket) => {
     if (gameState.attackedThisRound) {
       return;
     }
-   
+
     gameState.attackedThisRound = true;
-   
+
     if (gameState.textAction === "FIGHT") {
       if (data.key === "a") {
         gameState.p2Life -= 20;
@@ -122,15 +122,21 @@ io.on("connection", (socket) => {
         gameState.p2Life -= 20;
       }
     }
-   
+
+    if (gameState.p1Life <= 0 || gameState.p2Life <= 0) {
+      gameState.running = false;
+      gameState.initialized = false;
+      clearIntervals();
+    }
+
     io.emit("game-update", getGameStateForClient());
-   
+
     // Reset attackedThisRound na próxima palavra
     setTimeout(() => {
       gameState.attackedThisRound = false;
       startMatch();
     }, 1000);
-   });
+  });
 
   socket.on("disconnect", () => {
     gameState.players = gameState.players.filter((id) => id !== socket.id);
