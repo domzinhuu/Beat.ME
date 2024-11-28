@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   p2Life = 100;
 
   constructor() {
-    this.socket = io('http://localhost:4444', {
+    this.socket = io('http://msrsoftware.com.br:4444', {
       transports: ['websocket', 'polling']
     });
   }
