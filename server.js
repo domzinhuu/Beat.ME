@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
+  path: "/socket.io",
   cors: {
     origin: true,
     methods: ["GET", "POST"],
@@ -24,7 +25,7 @@ const gameState = {
   action: 0,
   timing: 0,
   intervalId: null,
-  wordIntervalId: null
+  wordIntervalId: null,
 };
 
 function getRandonInt(min, max) {
@@ -129,7 +130,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    gameState.players = gameState.players.filter(id => id !== socket.id);
+    gameState.players = gameState.players.filter((id) => id !== socket.id);
     if (gameState.players.length < 2) {
       resetGame();
       io.emit("game-update", getGameStateForClient());

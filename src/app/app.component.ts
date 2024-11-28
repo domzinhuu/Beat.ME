@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.socket = io('https://msrsoftware.com.br/socket.io', {
+      path: '/socket.io',
       transports: ['websocket', 'polling']
     });
   }
