@@ -82,6 +82,7 @@ function resetGame() {
 }
 
 io.on("connection", (socket) => {
+    console.log('Client conectado...',socket.id);
   if (gameState.players.length >= 2) {
     socket.emit("connection-rejected");
     return;
