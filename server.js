@@ -12,8 +12,6 @@ const io = require("socket.io")(http, {
   allowEIO3: true,
 });
 
-app.use(express.static(__dirname + "/dist"));
-
 const gameState = {
   players: [],
   p1Life: 100,
