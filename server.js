@@ -102,33 +102,35 @@ io.on("connection", (socket) => {
   });
 
   socket.on("player-attack", (data) => {
+    // Verifica se já houve ataque neste round
+    if (gameState.attackedThisRound) {
+      return;
+    }
+   
+    gameState.attackedThisRound = true;
+   
     if (gameState.textAction === "FIGHT") {
       if (data.key === "a") {
         gameState.p2Life -= 20;
-      } else {
+      } else if (data.key === "l") {
         gameState.p1Life -= 20;
       }
     } else {
-      // Reverse damage
       if (data.key === "a") {
         gameState.p1Life -= 20;
-      } else {
+      } else if (data.key === "l") {
         gameState.p2Life -= 20;
       }
     }
-
-    if (gameState.p1Life <= 0 || gameState.p2Life <= 0) {
-      gameState.running = false;
-      gameState.initialized = false;
-      clearIntervals();
-    }
-
+   
     io.emit("game-update", getGameStateForClient());
-
-    if (gameState.running) {
+   
+    // Reset attackedThisRound na próxima palavra
+    setTimeout(() => {
+      gameState.attackedThisRound = false;
       startMatch();
-    }
-  });
+    }, 1000);
+   });
 
   socket.on("disconnect", () => {
     gameState.players = gameState.players.filter((id) => id !== socket.id);
