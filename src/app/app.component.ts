@@ -27,13 +27,17 @@ export class AppComponent implements OnInit, OnDestroy {
   p2Life = 100;
 
   constructor() {
-    this.socket = io("https://msrsoftware.com.br/socket.io", {
-      path: "/socket.io",
-      transports: ["websocket", "polling"],
+    console.log("Initializing socket...");
+    this.socket = io("https://msrsoftware.com.br", {
+      path: "/socket.io/",
+      transports: ["websocket"],
+      debug: true,
     });
 
-    this.socket.on('connect', () => {
-      console.log('Connected to server');
+    console.log("Socket created:", this.socket);
+
+    this.socket.on("connect", () => {
+      console.log("Connected to server");
     });
 
     this.socket.on("connect_error", (error) => {
