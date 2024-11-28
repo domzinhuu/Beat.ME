@@ -9,13 +9,17 @@ import * as io from "socket.io-client";
 export class AppComponent implements OnInit, OnDestroy {
   private socket: any;
   private playerId: number;
-  
-  title = 'Beat.ME';
-  p1Bar = document.getElementsByClassName('life-p1') as HTMLCollectionOf<HTMLElement>;
-  p2Bar = document.getElementsByClassName('life-p2') as HTMLCollectionOf<HTMLElement>;
+
+  title = "Beat.ME";
+  p1Bar = document.getElementsByClassName(
+    "life-p1"
+  ) as HTMLCollectionOf<HTMLElement>;
+  p2Bar = document.getElementsByClassName(
+    "life-p2"
+  ) as HTMLCollectionOf<HTMLElement>;
   initialized = false;
   running = false;
-  status = 'READY';
+  status = "READY";
   textAction: string;
   playerWin: string;
   action: number;
@@ -23,32 +27,40 @@ export class AppComponent implements OnInit, OnDestroy {
   p2Life = 100;
 
   constructor() {
-    this.socket = io('https://msrsoftware.com.br/socket.io', {
-      path: '/socket.io',
-      transports: ['websocket', 'polling']
+    this.socket = io("https://msrsoftware.com.br/socket.io", {
+      path: "/socket.io",
+      transports: ["websocket", "polling"],
+    });
+
+    this.socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    this.socket.on("connect_error", (error) => {
+      console.log("Connection error:", error);
     });
   }
 
   ngOnInit() {
-    this.socket.on('player-assigned', (data: any) => {
+    this.socket.on("player-assigned", (data: any) => {
       this.playerId = data.playerId;
     });
 
-    this.socket.on('game-update', (state: any) => {
+    this.socket.on("game-update", (state: any) => {
       this.running = state.running;
       this.initialized = state.initialized;
       this.textAction = state.textAction;
       this.action = state.action;
       this.p1Life = state.p1Life;
       this.p2Life = state.p2Life;
-      
+
       this.p1Bar[0].style.width = `${this.p1Life}%`;
       this.p2Bar[0].style.width = `${this.p2Life}%`;
-      
-      if (this.p1Life <= 0) this.playerWin = 'JOGADOR 2';
-      if (this.p2Life <= 0) this.playerWin = 'JOGADOR 1';
-      
-      this.status = state.running ? 'RUNNING' : 'GAMEOVER';
+
+      if (this.p1Life <= 0) this.playerWin = "JOGADOR 2";
+      if (this.p2Life <= 0) this.playerWin = "JOGADOR 1";
+
+      this.status = state.running ? "RUNNING" : "GAMEOVER";
     });
   }
 
@@ -69,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   startTheGame() {
-    console.log('CLicou')
+    console.log("CLicou");
     this.socket.emit("start-game");
   }
 
