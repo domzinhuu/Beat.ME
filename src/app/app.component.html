@@ -1,17 +1,16 @@
 <div class="container">
   <div class="toolbar">
-    <h4 class="text-center">
-      <i class="fa fa-bullhorn fa-lg"></i> Beat.ME</h4>
-    <p class="text-center">Desafie um amigo nesta disputa de atenção e agilidade</p>
+    <h4 class="text-center"><i class="fa fa-bullhorn fa-lg"></i> Beat.ME</h4>
+    <p class="text-center">
+      Desafie um amigo nesta disputa de atenção e agilidade
+    </p>
   </div>
 
   <div class="game">
-
     <div class="screen">
-
       <div class="hud">
         <div class="lifebar player1">
-          <h3 class="p1 count">{{p1Life}}%</h3>
+          <h3 class="p1 count">{{ p1Life }}%</h3>
           <div class="life-p1"></div>
           <p class="popover-p1" id="damageP1">Jogador 1 levou dano!</p>
         </div>
@@ -19,7 +18,7 @@
         <h1 class="vs">VS</h1>
 
         <div class="lifebar">
-          <h3 class="p2 count">{{p2Life}}%</h3>
+          <h3 class="p2 count">{{ p2Life }}%</h3>
           <div class="life-p2"></div>
           <p class="popover-p2" id="damageP2">Jogador 2 levou dano!</p>
         </div>
@@ -27,42 +26,56 @@
 
       <div class="action">
         <div class="msg" *ngIf="running">
-          <h3 *ngIf="!reverseDamageMsg">{{textAction}}</h3>
-          <h3 *ngIf="action != 0 && !textAction">{{action}}</h3>
+          <h3>{{ textAction }}</h3>
+          <h3 *ngIf="!textAction">{{ action }}</h3>
         </div>
 
-        <div *ngIf="running && status != 'gameover'">
-          <h4 *ngIf="reverseDamageMsg">{{reverseDamageMsg}}</h4>
-        </div>
-
-        <div class="start-msg" *ngIf="!running && status != 'gameover'">
+        <div class="start-msg" *ngIf="!running && status !== 'GAMEOVER'">
           <h2 class="text-center">
-            <i class="fa fa-bullhorn fa-lg"></i> Beat.ME</h2>
+            <i class="fa fa-bullhorn fa-lg"></i> Beat.ME
+          </h2>
 
           <div class="howto">
             <ul class="normal-font">
-              <li><p>Use as teclas (A) para jogador 1 ou (L) para jogador 2</p></li>
+              <li>
+                <p>Use as teclas (A) para jogador 1 ou (L) para jogador 2</p>
+              </li>
               <li><p>Aperte quando a palavra 'FIGHT' aparecer</p></li>
-              <li><p>Não aperte antes nem depois se não receberá o dano.</p></li>
+              <li>
+                <p>Não aperte antes nem depois se não receberá o dano.</p>
+              </li>
             </ul>
           </div>
 
           <p class="text-center press">Aperte start</p>
         </div>
 
-        <div class="gameover-msg" *ngIf="!running && status == 'gameover'">
-          <h2 class="text-center">{{playerWin}} VENCEU!</h2>
-          <p class="text-center press">Clique em reiniciar para jogar novamente.</p>
+        <div class="gameover-msg" *ngIf="!running && status === 'GAMEOVER'">
+          <h2 class="text-center">{{ playerWin }} VENCEU!</h2>
+          <p class="text-center press">
+            Clique em reiniciar para jogar novamente.
+          </p>
         </div>
       </div>
-
     </div>
 
     <div class="controls">
       <div class="row">
         <div class="col-md-12 text-center">
-          <button *ngIf="!running && status !== 'gameover'" (click)="startTheGame()" class="btn btn-success btn-lg">START</button>
-          <button *ngIf="running || status === 'gameover'" (click)="restartGame()" class="btn btn-warning btn-lg">REINICIAR</button>
+          <button
+            *ngIf="!running && status !== 'GAMEOVER'"
+            (click)="startTheGame()"
+            class="btn btn-success btn-lg"
+          >
+            START
+          </button>
+          <button
+            *ngIf="running || status === 'GAMEOVER'"
+            (click)="startTheGame()"
+            class="btn btn-warning btn-lg"
+          >
+            REINICIAR
+          </button>
         </div>
       </div>
 
@@ -76,7 +89,6 @@
           <button id="l" class="btn btn-primary btn-lg">APERTE ( L )</button>
         </div>
       </div>
-
     </div>
   </div>
 </div>
