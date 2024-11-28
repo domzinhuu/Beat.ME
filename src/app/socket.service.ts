@@ -8,7 +8,7 @@ export class SocketService {
   private socket: any;
 
   constructor() {
-    this.socket = io("http://localhost:4444", {
+    this.socket = io("http://msrsoftware.com.br:4444", {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });
